@@ -17,7 +17,7 @@ pages:
 notify_success:
   stage: notify
   script: >
-    curl -X POST -H "Content-Type: application/json" -d '{"message":"GitLab CI/CD deployed!"}' https://eoiokktma8m4ley.m.pipedream.net
+    curl -X POST -H "Content-Type: application/json" -d '{"branch": "'"$CI_COMMIT_BRANCH"'","message":"GitLab CI/CD deployed!"}' https://eoiokktma8m4ley.m.pipedream.net
   when: on_success
 
 notify_failure:

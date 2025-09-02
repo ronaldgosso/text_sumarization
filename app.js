@@ -2,36 +2,42 @@ import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers/dist
 
 let summarizer;
 
+// Load model with blocking UI
 async function loadModel() {
   try {
-    document.getElementById("status").innerText = "⏳ Loading model...";
+    Notiflix.Block.circle('body', 'Loading AI model...');
     summarizer = await pipeline("text2text-generation", "Xenova/t5-small");
-    document.getElementById("status").innerText = "✅ Model loaded, ready!";
+    Notiflix.Block.remove('body');
+    Notiflix.Notify.success("Model loaded successfully! 🚀");
   } catch (err) {
     console.error(err);
-    document.getElementById("status").innerText = "❌ Failed to load model.";
+    Notiflix.Block.remove('body');
+    Notiflix.Report.failure("Model Error", "Failed to load the model.", "Close");
   }
 }
 
+// Summarize text with blocking animation
 async function summarizeText() {
   const inputText = document.getElementById("inputText").value.trim();
   if (!inputText) {
-    alert("Please enter some text to summarize.");
+    Notiflix.Report.warning("Empty Input", "Please enter some text to summarize.", "OK");
     return;
   }
 
   try {
-    document.getElementById("status").innerText = "⏳ Summarizing...";
+    Notiflix.Block.circle('#output', 'Summarizing...');
     const result = await summarizer("summarize: " + inputText, {
       max_length: 100,
       min_length: 30,
     });
 
     document.getElementById("output").innerText = result[0].generated_text;
-    document.getElementById("status").innerText = "✅ Done!";
+    Notiflix.Block.remove('#output');
+    Notiflix.Notify.success("Summary ready! ✅");
   } catch (err) {
     console.error(err);
-    document.getElementById("status").innerText = "❌ Summarization failed.";
+    Notiflix.Block.remove('#output');
+    Notiflix.Report.failure("Summarization Error", "Something went wrong while summarizing.", "Close");
   }
 }
 

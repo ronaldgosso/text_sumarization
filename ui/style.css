@@ -1,0 +1,28 @@
+    body {
+      background-color: #F5F5F5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .navbar {
+      background-color: #FFCC4D;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      color: #191919 !important;
+    }
+    .card {
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .btn-hf {
+      background-color: #FFCC4D;
+      color: #191919;
+      font-weight: 600;
+    }
+    .btn-hf:hover {
+      background-color: #e6b83f;
+      color: #000;
+    }
+    #output {
+      white-space: pre-wrap;
+      min-height: 120px;
+    }

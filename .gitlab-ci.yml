@@ -1,7 +1,9 @@
+stages:
+  - deploy
+  - notify
+
 pages:
-  stage: 
-    - deploy
-    - notify 
+  stage: deploy
   script:
     - mkdir .public
     - cp -r * .public
@@ -11,16 +13,17 @@ pages:
       - public
   only:
     - main
+
 notify_success:
   stage: notify
-  script:
-    - 'curl -X POST -H "Content-Type: application/json" -d "{"message":"GitLab CI/CD deployed!"}"  https://eoiokktma8m4ley.m.pipedream.net'
+  script: >
+    curl -X POST -H "Content-Type: application/json" -d '{"message":"GitLab CI/CD deployed!"}' https://eoiokktma8m4ley.m.pipedream.net
   when: on_success
+
 notify_failure:
   stage: notify
   script: >
-    curl -X POST -H "Content-Type: application/json"
-    -d '{
+    curl -X POST -H "Content-Type: application/json" -d '{
       "branch": "'"$CI_COMMIT_BRANCH"'",
       "commit": "'"$CI_COMMIT_SHA"'",
       "project": "'"$CI_PROJECT_NAME"'",

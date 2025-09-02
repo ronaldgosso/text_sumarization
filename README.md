@@ -6,6 +6,7 @@ This one is just a sample, by virtue of running on a non-server backed environme
 ## Tech-Flow
     - Vanilla JS
     - Static Web 😀
+    - CI/CD + WebHooks
 
 ## Model and Caveats
 - Xenova/t5-small 🔥

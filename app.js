@@ -47,6 +47,21 @@ async function summarizeText() {
   }, 50); // 50ms gives browser time to render
 }
 
+// Toggle dark theme dynamically
+function applyHfDarkTheme() {
+  document.body.classList.add("dark-theme");
+}
+
+function removeHfDarkTheme() {
+  document.body.classList.remove("dark-theme");
+}
+
+// Optional: detect system dark mode
+const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (prefersDark) {
+  applyHfDarkTheme();
+}
+
 
 // Initialize app
 window.addEventListener("load", () => loadModel('Xenova/t5-small'));
@@ -59,3 +74,8 @@ document.getElementById("modelSelect").addEventListener("change", (event) => {
 
 
 document.getElementById("summarizeBtn").addEventListener("click", summarizeText);
+
+// Optional: toggle button
+document.getElementById("themeToggle")?.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+});

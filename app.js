@@ -1,14 +1,15 @@
-import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers/dist/transformers.min.js";
+import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2/dist/transformers.min.js'
+
 
 let summarizer;
 
 // Load model with blocking UI
-async function loadModel() {
+async function loadModel(modelName) {
   try {
     Notiflix.Block.circle('body', 'Loading AI model...');
-    summarizer = await pipeline("text2text-generation", "Xenova/t5-small");
+    summarizer = await pipeline("summarization", modelName);
     Notiflix.Block.remove('body');
-    Notiflix.Notify.success("Model loaded successfully! 🚀");
+    Notiflix.Notify.success(`Model ${modelName} loaded!`);
   } catch (err) {
     console.error(err);
     Notiflix.Block.remove('body');
@@ -35,7 +36,7 @@ async function summarizeText() {
         min_length: 30,
       });
 
-      document.getElementById("output").innerText = result[0].generated_text;
+      document.getElementById("output").innerText = result[0].summary_text || result[0].generated_text;
       Notiflix.Block.remove('#output');
       Notiflix.Notify.success("Summary ready! ✅");
     } catch (err) {
@@ -48,5 +49,13 @@ async function summarizeText() {
 
 
 // Initialize app
-window.addEventListener("load", loadModel);
+window.addEventListener("load", () => loadModel('Xenova/t5-small'));
+
+// Model selection event listener
+document.getElementById("modelSelect").addEventListener("change", (event) => {
+  loadModel(event.target.value);
+  console.log (`Model changed to ${event.target.value}`);
+});
+
+
 document.getElementById("summarizeBtn").addEventListener("click", summarizeText);

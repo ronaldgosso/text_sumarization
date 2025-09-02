@@ -23,9 +23,16 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card p-4">
-          <h3 class="mb-3 text-center">AI-Powered Text Summarizer</h3>
+          <h3 class="mb-3 text-center">Simple Text Summarizer</h3>
           <p class="text-muted text-center">Paste any text below and generate a concise summary directly in your browser.</p>
-
+          <label for="inputText" class="form-label fw-bold">Choose Model</label>
+          <select id="modelSelect" class="form-select mb-3">
+            <option value="Xenova/t5-small">T5 Small (Fastest)</option>
+            <option value="Xenova/pegasus-xsum-small">Pegasus XSum Small</option>
+            <option value="Xenova/t5-base">T5 Base</option>
+            <option value="Xenova/distilbart-cnn-6-6">DistilBART CNN 6-6</option>
+            <option value="Xenova/bart-large-cnn">BART Large CNN</option>
+        </select>
           <!-- Input -->
           <div class="mb-3">
             <label for="inputText" class="form-label fw-bold">Your Text</label>
@@ -36,9 +43,6 @@
           <div class="d-grid mb-3">
             <button id="summarizeBtn" class="btn btn-hf">Summarize</button>
           </div>
-
-          <!-- Status
-          <p id="status" class="text-center text-muted">⏳ Model loading...</p> -->
 
           <!-- Output -->
           <div class="mb-3">

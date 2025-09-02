@@ -6,6 +6,7 @@ This one is just a sample, by virtue of running on a non-server backed environme
     - Vanilla JS
     - Static Web 😀
 
+## Model and Caveats
+- Xenova/t5-small
+ Runs in-browser, limited by client resources, may be slower for long texts.
 
-### Model used
-    - Xenova/t5-small (Pre-trained)

@@ -24,22 +24,28 @@ async function summarizeText() {
     return;
   }
 
-  try {
-    Notiflix.Block.circle('#output', 'Summarizing...');
-    const result = await summarizer("summarize: " + inputText, {
-      max_length: 100,
-      min_length: 30,
-    });
+  // Show blocking spinner first
+  Notiflix.Block.pulse('#output', 'Summarizing...');
 
-    document.getElementById("output").innerText = result[0].generated_text;
-    Notiflix.Block.remove('#output');
-    Notiflix.Notify.success("Summary ready! ✅");
-  } catch (err) {
-    console.error(err);
-    Notiflix.Block.remove('#output');
-    Notiflix.Report.failure("Summarization Error", "Something went wrong while summarizing.", "Close");
-  }
+  // Allow the spinner to render
+  setTimeout(async () => {
+    try {
+      const result = await summarizer("summarize: " + inputText, {
+        max_length: 100,
+        min_length: 30,
+      });
+
+      document.getElementById("output").innerText = result[0].generated_text;
+      Notiflix.Block.remove('#output');
+      Notiflix.Notify.success("Summary ready! ✅");
+    } catch (err) {
+      console.error(err);
+      Notiflix.Block.remove('#output');
+      Notiflix.Report.failure("Summarization Error", "Something went wrong while summarizing.", "Close");
+    }
+  }, 50); // 50ms gives browser time to render
 }
+
 
 // Initialize app
 window.addEventListener("load", loadModel);

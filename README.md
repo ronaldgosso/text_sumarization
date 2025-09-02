@@ -1,6 +1,7 @@
 # text_summarization
 A text summarization project is a Natural Language Processing (NLP) application designed to automatically create a short, coherent summary of a longer text document. The project's goal is to reduce the volume of text while retaining the most important information, making it easier for users to digest large amounts of information efficiently.
 This one is just a sample, by virtue of running on a non-server backed environment.
+[Site](https://ronaldgosso.gitlab.io/text_summarization)
 
 ## Tech-Flow
     - Vanilla JS
@@ -19,4 +20,5 @@ This one is just a sample, by virtue of running on a non-server backed environme
    Slowest. This is the largest model, and therefore requires the most time for inference.
 
 Depends on your Internet connection 
+
 

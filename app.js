@@ -2,6 +2,7 @@ import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers
 
 
 let summarizer;
+const themeToggleBtn = document.getElementById("themeToggle");
 
 // Load model with blocking UI
 async function loadModel(modelName) {
@@ -47,23 +48,30 @@ async function summarizeText() {
   }, 50); // 50ms gives browser time to render
 }
 
+
+//THEME
 // Toggle dark theme dynamically
 function applyHfDarkTheme() {
   document.body.classList.add("dark-theme");
+  themeToggleBtn.innerText = "Light";
 }
 
 function removeHfDarkTheme() {
   document.body.classList.remove("dark-theme");
+  themeToggleBtn.innerText = "Dark";
+
 }
 
 // Optional: detect system dark mode
 const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 if (prefersDark) {
   applyHfDarkTheme();
+} else {
+  removeHfDarkTheme();
 }
 
 
-// Initialize app
+// Initialize Model
 window.addEventListener("load", () => loadModel('Xenova/t5-small'));
 
 // Model selection event listener
@@ -75,7 +83,10 @@ document.getElementById("modelSelect").addEventListener("change", (event) => {
 
 document.getElementById("summarizeBtn").addEventListener("click", summarizeText);
 
-// Optional: toggle button
-document.getElementById("themeToggle")?.addEventListener("click", () => {
-  document.body.classList.toggle("dark-theme");
+themeToggleBtn.addEventListener("click", () => {
+  if (document.body.classList.contains("dark-theme")) {
+    removeHfDarkTheme();
+  } else {
+    applyHfDarkTheme();
+  }
 });

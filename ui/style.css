@@ -38,33 +38,55 @@ body {
 /* Dark Theme */
 body.dark-theme {
   background-color: #1a1a1a;
+  color: #f5f5f5;  /* Default text color */
+}
+
+/* Apply to all nested text elements */
+body.dark-theme p,
+body.dark-theme label,
+body.dark-theme textarea,
+body.dark-theme select,
+body.dark-theme option,
+body.dark-theme input,
+body.dark-theme div,
+body.dark-theme span,
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme h6 {
+  color: #f5f5f5 !important;
+}
+
+/* Card background & text */
+body.dark-theme .card {
+  background-color: #2b2b2b !important;
   color: #f5f5f5;
 }
 
+/* Buttons */
+body.dark-theme .btn,
+body.dark-theme .btn-hf {
+  color: #191919;
+}
+
+/* Output container */
+body.dark-theme #output {
+  background-color: #1f1f1f;
+  color: #f5f5f5;
+}
+
+/* Navbar */
 body.dark-theme .navbar {
-  background-color: #191919;
+  background-color: #191919 !important;
 }
 
 body.dark-theme .navbar-brand {
   color: #FFCC4D !important;
 }
 
-body.dark-theme .card {
-  background-color: #2b2b2b;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-}
-
-body.dark-theme .btn-hf {
-  background-color: #FFCC4D;
-  color: #191919;
-}
-
-body.dark-theme .btn-hf:hover {
-  background-color: #e6b83f;
-  color: #000;
-}
-
-body.dark-theme #output {
-  background-color: #1f1f1f;
-  color: #f5f5f5;
+body.dark-theme ::placeholder {
+  color: #cccccc;
+  opacity: 1;
 }

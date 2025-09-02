@@ -1,5 +1,7 @@
 pages:
-  stage: deploy
+  stage: 
+    - deploy
+    - notify 
   script:
     - mkdir .public
     - cp -r * .public
